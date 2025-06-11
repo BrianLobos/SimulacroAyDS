@@ -1,13 +1,13 @@
-package com.example.preparcialayd.B
+package com.example.preparcialayd.presentation
 
 import android.content.Context
 import android.util.Log
 import ayds.observer.Subject
-import com.example.preparcialayd.C.DataRepo
+import com.example.preparcialayd.data.DataRepo
 import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 
-class SomeClass(context: Context) {
+class MainScreenPresenter(context: Context) {
 
     val observer = Subject<Pair<String, Int>>()
     private val repository = DataRepo(context)

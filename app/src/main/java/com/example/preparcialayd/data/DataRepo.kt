@@ -1,4 +1,4 @@
-package com.example.preparcialayd.C
+package com.example.preparcialayd.data
 
 import C.ApiY
 import android.content.Context
