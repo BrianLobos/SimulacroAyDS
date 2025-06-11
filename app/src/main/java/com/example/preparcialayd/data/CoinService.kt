@@ -1,10 +1,10 @@
-package C
+package com.example.preparcialayd.data
 
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import java.net.URL
 
-class ApiY {
+class CoinService {
     fun get(symbol: String): Double {
         val url = "https://api.alternative.me/v2/ticker/1/?convert=$symbol"
         val text = URL(url).readText()

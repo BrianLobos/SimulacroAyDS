@@ -33,7 +33,7 @@ class MainScreen : AppCompatActivity() {
 
     fun initPresenter(){
         mainScreenPresenter = MainScreenPresenter(this)
-        mainScreenPresenter.observer.subscribe { result ->
+        mainScreenPresenter.coinObservable.subscribe { result ->
             onPrice("$result.first – $result.second")
         }
     }
@@ -53,7 +53,7 @@ class MainScreen : AppCompatActivity() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedCoin = coinTypes[position]
-                mainScreenPresenter.fetchPrice(selectedCoin)
+                mainScreenPresenter.fetchPriceAsync(selectedCoin)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}

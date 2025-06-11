@@ -1,22 +1,25 @@
 package com.example.preparcialayd.presentation
 
 import android.content.Context
-import android.util.Log
 import ayds.observer.Subject
-import com.example.preparcialayd.data.DataRepo
+import com.example.preparcialayd.data.CoinRepository
 import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 
 class MainScreenPresenter(context: Context) {
 
-    val observer = Subject<Pair<String, Int>>()
-    private val repository = DataRepo(context)
+    val coinObservable = Subject<Pair<String, Int>>()
+    private val coinRepository = CoinRepository(context)
 
-    fun fetchPrice(monedaSeleccionada: String) {
+    fun fetchPriceAsync(selectedCoin: String) {
         thread {
-            val result = repository.fetchPrice(monedaSeleccionada)
-            Log.e("RESULT", result.toString())
-            observer.notify(Pair(monedaSeleccionada, result.roundToInt()))
+            fetchPrice(selectedCoin)
         }
     }
+
+    private fun fetchPrice(selectedCoin: String){
+        val price = coinRepository.fetchPrice(selectedCoin)
+        coinObservable.notify(Pair(selectedCoin, price.roundToInt()))
+    }
+
 }
